@@ -1,0 +1,189 @@
+<div>
+<h2 id="sidebar---infrastructure">Sidebar - Infrastructure<a href="https://www.simp-project.com/docs/simp-console/sidebar-infrastructure.html#sidebar---infrastructure" aria-label="Anchor" data-anchorjs-icon=""></a></h2>
+<h3 id="management-page">Management Page<a href="https://www.simp-project.com/docs/simp-console/sidebar-infrastructure.html#management-page" aria-label="Anchor" data-anchorjs-icon=""></a></h3>
+<p>The Management page is where admin users can accept or reject incoming nodes, access the Agent installation drawer, and create automation rules to automatically accept or reject nodes.</p>
+<h4 id="acceptingrejecting-nodes">Accepting/Rejecting Nodes<a href="https://www.simp-project.com/docs/simp-console/sidebar-infrastructure.html#acceptingrejecting-nodes" aria-label="Anchor" data-anchorjs-icon=""></a></h4>
+<p>When you install and get the Agent running for the first time, your node will initially be found in the Management page. You can accept or reject the node using the ‘Accept’ or ‘Reject’ buttons on that node’s row.</p>
+<p><img src="https://www.simp-project.com/docs/simp-console/images/mngmnt-single-node.png" loading="lazy" width="1300"></p>
+<p>If the Management page has multiple nodes you would like to accept or reject, you can either use the checkbox at the top to select all of the nodes or select specific nodes you would like to accept or reject, then use the ‘Accept’ or ‘Reject’ buttons above the table.</p>
+<p><img src="https://www.simp-project.com/docs/simp-console/images/multi-select-node.png" loading="lazy" width="1300"></p>
+<h3 id="rejected-nodes">Rejected Nodes<a href="https://www.simp-project.com/docs/simp-console/sidebar-infrastructure.html#rejected-nodes" aria-label="Anchor" data-anchorjs-icon=""></a></h3>
+<p>When the rejected button is clicked on one or more nodes, it will be send to the rejected nodes table. This full list of rejected nodes can be found by clicking the “Rejected Nodes” tab.</p>
+<p><img src="https://www.simp-project.com/docs/simp-console/images/rejected-nodes.png" loading="lazy" width="1300"></p>
+<p>In the case you want to bring a node back into the “Pending Nodes” table, simply click restore. Once the agent has reconnected, it will appear on the pending list and allow for acceptance into the infrastructure.</p>
+<h3 id="agent-downloads">Agent Downloads<a href="https://www.simp-project.com/docs/simp-console/sidebar-infrastructure.html#agent-downloads" aria-label="Anchor" data-anchorjs-icon=""></a></h3>
+<p>Inside the Agent Downloads drawer, you can find the Windows executable and Linux RPM for installation. The yum repository and instructions for installation can also be found in this drawer.</p>
+<p><img src="https://www.simp-project.com/docs/simp-console/images/agent-downloads.png" loading="lazy" width="1300"></p>
+<h3 id="automation-rules">Automation Rules<a href="https://www.simp-project.com/docs/simp-console/sidebar-infrastructure.html#automation-rules" aria-label="Anchor" data-anchorjs-icon=""></a></h3>
+<p>Inside the Automation Rules drawer, you can create different rules in which nodes can be automatically accepted or rejected depending on whether or not they match those custom rules.</p>
+<ul>
+<li>
+<p>When creating a custom automation rule for the ‘If’ section, you can start by selecting an object type (IP Address, Platform, FQDN) to compare with an incoming node.</p>
+</li>
+<li>
+<p>Then, you can select the comparator type (matches or does not match) for the incoming node.</p>
+</li>
+<li>
+<p>Finally, you can create a string to match based on the object type. Within the string box, you can use a wildcard ( * ) to allow any string to be used for that custom rule.</p>
+</li>
+<li>
+<p>Once you have finished the ‘If’ section, you can select whether a node will be accepted or rejected in the ‘Then’ section’s dropdown based on the ‘If’ section’s custom rules.</p>
+</li>
+</ul>
+<p><img src="https://www.simp-project.com/docs/simp-console/images/automation-rules.png" loading="lazy" width="1300"></p>
+<h2 id="nodes-page">Nodes Page<a href="https://www.simp-project.com/docs/simp-console/sidebar-infrastructure.html#nodes-page" aria-label="Anchor" data-anchorjs-icon=""></a></h2>
+<h3 id="nodes-tree">Nodes Tree<a href="https://www.simp-project.com/docs/simp-console/sidebar-infrastructure.html#nodes-tree" aria-label="Anchor" data-anchorjs-icon=""></a></h3>
+<p>The nodes tree allows you to organize your infrastructure any way you like. Each system that has been registered to the console appears here as a node.</p>
+<p><img src="https://www.simp-project.com/docs/simp-console/images/node-tree.png" loading="lazy" width="600"></p>
+<p>The tree can be collapsed by clicking the arrow tab or resized by clicking the resize bar on the right side.</p>
+<p>There are two types of nodes that can exist inside the node tree: endpoint and folder.</p>
+<h4 id="endpoint">Endpoint<a href="https://www.simp-project.com/docs/simp-console/sidebar-infrastructure.html#endpoint" aria-label="Anchor" data-anchorjs-icon=""></a></h4>
+<p><img src="https://www.simp-project.com/docs/simp-console/images/desktop.svg" loading="lazy" style="width: 66px; height: auto; max-width: 100%;" width="66" height="59"></p>
+<ul>
+<li>
+<p>Represents a physical (or virtual) machine.</p>
+</li>
+<li>
+<p>An endpoint is created during registration with the Sicura Agent. Its name defaults to the hostname of the machine. A unique name can be set during the registration process or by right-clicking on the node and selecting<span>&nbsp;</span><strong>Rename</strong>.</p>
+</li>
+<li>
+<p>Other nodes cannot be stored inside of an endpoint.</p>
+</li>
+<li>
+<p>Right-click and selecting<span>&nbsp;</span><strong>Delete</strong><span>&nbsp;</span>will remove the endpoint from the database but will not remove any of the scans/reports associated with it. This is by design and is used for auditing purposes.</p>
+</li>
+</ul>
+<h4 id="folder">Folder<a href="https://www.simp-project.com/docs/simp-console/sidebar-infrastructure.html#folder" aria-label="Anchor" data-anchorjs-icon=""></a></h4>
+<p><img src="https://www.simp-project.com/docs/simp-console/images/folder.svg" loading="lazy" style="width: 59px; height: auto; max-width: 100%;" width="59" height="59"></p>
+<ul>
+<li>
+<p>Is used to organize other nodes and folders.</p>
+</li>
+<li>
+<p>Folders are created by right-clicking on a folder and selecting<span>&nbsp;</span><strong>New Folder</strong></p>
+</li>
+<li>
+<p>By default two folders exist,<span>&nbsp;</span><code>All Nodes</code><span>&nbsp;</span>and<span>&nbsp;</span><code>Unassigned</code>. All new nodes will be found in<span>&nbsp;</span><code>Unassigned</code>.</p>
+</li>
+<li>
+<p>Folders can only be deleted when they are empty.</p>
+</li>
+</ul>
+<h3 id="nodes-folders-only">Nodes (folders only)<a href="https://www.simp-project.com/docs/simp-console/sidebar-infrastructure.html#nodes-folders-only" aria-label="Anchor" data-anchorjs-icon=""></a></h3>
+<p><img src="https://www.simp-project.com/docs/simp-console/images/nodes-tab.png" loading="lazy" width="1300"></p>
+<p>The<span>&nbsp;</span><strong>Nodes</strong><span>&nbsp;</span>tab provides an overview of all nodes contained inside. The node name, IP address for that node, and last update date can be seen from this datatable.</p>
+<h3 id="scan-results">Scan Results<a href="https://www.simp-project.com/docs/simp-console/sidebar-infrastructure.html#scan-results" aria-label="Anchor" data-anchorjs-icon=""></a></h3>
+<p><img src="https://www.simp-project.com/docs/simp-console/images/scan-results.png" loading="lazy" width="1300"></p>
+<p>The<span>&nbsp;</span><strong>Scan Results</strong><span>&nbsp;</span>tab is used to view the SCAP results from the Sicura Agent.</p>
+<p><img src="https://www.simp-project.com/docs/simp-console/images/folder-view.png" loading="lazy" width="1300"></p>
+<p>For folders, the<span>&nbsp;</span><strong>Status</strong><span>&nbsp;</span>column in the datatable will show how many nodes contained within are passing, failing, not-applicable, etc.</p>
+<p>Based on<span>&nbsp;</span><code>Enforcement Tolerance</code><span>&nbsp;</span>set within the<span>&nbsp;</span><code>Settings</code><span>&nbsp;</span>tab. Different rules can be remediated on some systems where others may not.</p>
+<p>This is represented by the number displayed below the remediation checkbox</p>
+<p><img src="https://www.simp-project.com/docs/simp-console/images/folder-view-with-tolerance.png" loading="lazy" width="1300"></p>
+<p><img src="https://www.simp-project.com/docs/simp-console/images/profile-date.png" loading="lazy" style="width: 538px; height: auto; max-width: 100%;" width="538" height="126"></p>
+<ul>
+<li>
+<p><strong>Profile dropdown</strong><span>&nbsp;</span>- This is the compliance profile as reported from Sicura Agent that the scan was done against. If different compliance profiles have been scanned the results can be updated by selecting from here.</p>
+</li>
+<li>
+<p><strong>Scan Date</strong><span>&nbsp;</span>- This is the date and time in which the scan was completed. This may be different than the time the scan was submitted.</p>
+</li>
+</ul>
+<p><img src="https://www.simp-project.com/docs/simp-console/images/scan-details.png" loading="lazy" width="1300"></p>
+<p>The scan details show an overview of pass/fail status across all the checks from the scan. The scan details also provide filtering options so you can view results by specifying what you want to see.</p>
+<p><img src="https://www.simp-project.com/docs/simp-console/images/scan-checks.png" loading="lazy" width="1300"></p>
+<p>The datatable provides a list of each check that was evaluated during the scan.</p>
+<ul>
+<li>
+<p><strong>Rule name</strong><span>&nbsp;</span>- Explains what the rule aims to ensure. Click this to open the scan drawer.</p>
+</li>
+<li>
+<p><strong>Controls</strong><span>&nbsp;</span>- Lists the compliance controls this rule is relevant to.</p>
+</li>
+<li>
+<p><strong>Status</strong><span>&nbsp;</span>- Shows passing/failing/other status based on the results of the scan.</p>
+</li>
+</ul>
+<h4 id="scan-drawer">Scan Drawer<a href="https://www.simp-project.com/docs/simp-console/sidebar-infrastructure.html#scan-drawer" aria-label="Anchor" data-anchorjs-icon=""></a></h4>
+<p>After clicking a specific rule, this drawer opens to provide more information. The drawer has two sections:</p>
+<p><strong>Details</strong></p>
+<p><img src="https://www.simp-project.com/docs/simp-console/images/scan-drawer.png" loading="lazy" style="width: 537px; height: auto; max-width: 100%; margin-left: auto; margin-right: auto; display: block;" width="537" height="896"></p>
+<div>
+<div>
+<pre><code> Under this section you'll find:<br><br>  - The description provides details on the check's purpose and how it can be fixed manually.<br><br>  - The XCCDF ID for easy identification.<br><br>  - A list of controls this rule affects.<br></code></pre>
+</div>
+</div>
+<p><strong>Remediation</strong></p>
+<p><img src="https://www.simp-project.com/docs/simp-console/images/scan-drawer-remediation.png" loading="lazy" style="width: 449px; height: auto; max-width: 100%; margin-left: auto; margin-right: auto; display: block;" width="449" height="586"></p>
+<div>
+<div>
+<pre><code> Under this section you'll find:<br><br>   - The **Remediate** button (if enabled in the config and user accessing has the role feature enabled) which can be used to automatically fix the finding on the specified node.<br><br>   - The relevant Puppet Hiera data which can be easily copied and pasted into your infrastructure code for continuous enforcement.<br></code></pre>
+</div>
+</div>
+<ul>
+<li>If supported by Sicura enforcement, Puppet Hiera data is provided next to allow for easy remediation.</li>
+</ul>
+<h3 id="scan-history">Scan History<a href="https://www.simp-project.com/docs/simp-console/sidebar-infrastructure.html#scan-history" aria-label="Anchor" data-anchorjs-icon=""></a></h3>
+<p>The<span>&nbsp;</span><strong>Scan History</strong><span>&nbsp;</span>tab provides a quick way to view the past scans done on a node (or nested nodes in the case of a folder). It provides the date/time of scan and submission, which node the scan ran on, how many rules were checked in the scan, what compliance profile the scan was done against, and the collector it was submitted to.</p>
+<p><img src="https://www.simp-project.com/docs/simp-console/images/scan-history.png" loading="lazy" width="1300"></p>
+<h3 id="permissions">Permissions<a href="https://www.simp-project.com/docs/simp-console/sidebar-infrastructure.html#permissions" aria-label="Anchor" data-anchorjs-icon=""></a></h3>
+<p>The<span>&nbsp;</span><strong>Permissions</strong><span>&nbsp;</span>tab is used (generally by administrators) to setup what roles different users and groups can have on any given node. The datatable shows the list of all permissions set. By default there is one permission that gives the group<span>&nbsp;</span><strong>Administrators</strong><span>&nbsp;</span>the role of<span>&nbsp;</span><strong>Admin</strong><span>&nbsp;</span>over all nodes and their subsequent children.</p>
+<p><img src="https://www.simp-project.com/docs/simp-console/images/permissions-1.png" loading="lazy" width="1300"></p>
+<p>By clicking<span>&nbsp;</span><strong>Add Permission</strong>, you’ll be able to add additional<span>&nbsp;</span><strong>Users</strong>/<strong>Groups</strong><span>&nbsp;</span>to roles for this node. These permissions will be inherited down the tree.</p>
+<p><img src="https://www.simp-project.com/docs/simp-console/images/permissions-2.png" loading="lazy" style="width: 374px; height: auto; max-width: 100%; margin-left: auto; margin-right: auto; display: block;" width="374" height="429"></p>
+<blockquote>
+<p><strong><em>NOTE:</em></strong><span>&nbsp;</span>Your current session needs to have ‘UPDATE’ privileges in order to assign new permissions. Otherwise you’ll only be able to view them.</p>
+</blockquote>
+<h3 id="properties">Properties<a href="https://www.simp-project.com/docs/simp-console/sidebar-infrastructure.html#properties" aria-label="Anchor" data-anchorjs-icon=""></a></h3>
+<p><strong>Properties</strong><span>&nbsp;</span>displays metadata for the specific node selected. Depending on its type, you’ll have more or less information.</p>
+<p><strong>Endpoint:</strong></p>
+<p><img src="https://www.simp-project.com/docs/simp-console/images/prop-1.png" loading="lazy" width="1300"></p>
+<p><strong>Folder:</strong><span>&nbsp;</span><img src="https://www.simp-project.com/docs/simp-console/images/prop-2.png" loading="lazy" width="1300"></p>
+<h3 id="settings">Settings<a href="https://www.simp-project.com/docs/simp-console/sidebar-infrastructure.html#settings" aria-label="Anchor" data-anchorjs-icon=""></a></h3>
+<p><strong>Settings</strong><span>&nbsp;</span>contains the settings that have been set or inherited for the node.</p>
+<p>A user must have<span>&nbsp;</span><code>UPDATE</code><span>&nbsp;</span>permissions on the node in order to apply changes to settings</p>
+<p><strong>Enforcement Tolerance</strong>:</p>
+<p>Defines what level of risk will be allowed when remediating rules from the<span>&nbsp;</span><code>Scan Results</code><span>&nbsp;</span>page. By default, level 40 is inherited from the<span>&nbsp;</span><code>Unassigned</code><span>&nbsp;</span>or<span>&nbsp;</span><code>All Nodes</code><span>&nbsp;</span>folders.</p>
+<p><img src="https://www.simp-project.com/docs/simp-console/images/enforcement-tolerance-default.png" loading="lazy" width="600"></p>
+<p>This default can be overridden by toggling the<span>&nbsp;</span><code>Use custom value</code><span>&nbsp;</span>switch. If this switch is set on a folder all nodes within the folder without the custom switch toggled will inherit the value set on the parent folder.</p>
+<p>Risk goes up the higher the value that is set. Only use risk 100 on experimental nodes as unexpected results may occur due to remediation.</p>
+<p>A tolerance level of 0 will disable enforcement entirely for the node.</p>
+<p><img src="https://www.simp-project.com/docs/simp-console/images/enforcement-tolerance-custom.png" loading="lazy" width="600"></p>
+<p><strong>Default Scan Profiles</strong>:</p>
+<p>Defines which profile Scan Now should use when triggering a new scan. This setting is required for the Scan Now feature to be enabled.</p>
+<p>Folders can set default scan profiles for children of each platform type. These defaults will apply to all top-level children that are set to inherit a profile. Folders can also inherit profiles from their parent and pass it on to their children.</p>
+<p><img src="https://www.simp-project.com/docs/simp-console/images/folder-default-profile.png" loading="lazy" width="1300"></p>
+<p>Endpoints can choose to have no profile set, inherit from their parent, or define their own custom default profile. An endpoint with a custom profile set will not inherit from it’s parent.</p>
+<p><img src="https://www.simp-project.com/docs/simp-console/images/endpoint-default-profile.png" loading="lazy" style="width: 544px; height: auto; max-width: 100%;" width="544" height="174"></p>
+<h2 id="scan-triggering">Scan Triggering<a href="https://www.simp-project.com/docs/simp-console/sidebar-infrastructure.html#scan-triggering" aria-label="Anchor" data-anchorjs-icon=""></a></h2>
+<p>Scan triggering comes in two ways,<span>&nbsp;</span><strong>Scan Now</strong><span>&nbsp;</span>and<span>&nbsp;</span><strong>Scheduled Scans</strong>. Both require a connected Sicura Agent.</p>
+<blockquote>
+<p><strong>Note:</strong><span>&nbsp;</span>If running a scan on a folder type, it will scan only the direct children within that folder. Nested folders will need scans to be triggered independently.</p>
+</blockquote>
+<h3 id="scan-now">Scan Now<a href="https://www.simp-project.com/docs/simp-console/sidebar-infrastructure.html#scan-now" aria-label="Anchor" data-anchorjs-icon=""></a></h3>
+<p>For the<span>&nbsp;</span><strong>Scan Now</strong><span>&nbsp;</span>button to appear, a default scan profile is required to be set for an endpoint or for the system platform at the folder level. Only nodes with default scan profiles will trigger a new scan when<span>&nbsp;</span><strong>Scan Now</strong><span>&nbsp;</span>is clicked.</p>
+<p>Once clicked the scan will be triggered with the configured scan profile.</p>
+<p><img src="https://www.simp-project.com/docs/simp-console/images/scan-now.png" loading="lazy" style="width: 417px; height: auto; max-width: 100%;" width="417" height="137"></p>
+<p>Additionally, in the dropdown next to Scan Now, you are able to explicitly trigger a scan from a list of Benchmark authors and their profiles. When you click a specific profile, the scan will be immediately triggered. In folders this will trigger a scan for all nodes that match the selected platform.</p>
+<p><img src="https://www.simp-project.com/docs/simp-console/images/scan-now-menu.png" loading="lazy" width="1300"></p>
+<h3 id="scheduled-scan">Scheduled Scan<a href="https://www.simp-project.com/docs/simp-console/sidebar-infrastructure.html#scheduled-scan" aria-label="Anchor" data-anchorjs-icon=""></a></h3>
+<p>To schedule a scan, simply click the dropdown next to the<span>&nbsp;</span><strong>Scan Now</strong><span>&nbsp;</span>button and select<span>&nbsp;</span><strong>Schedule Scan</strong>. This will open the<span>&nbsp;</span><strong>Schedule Scan</strong><span>&nbsp;</span>drawer.</p>
+<p>Inside the<span>&nbsp;</span><strong>Schedule Scan</strong><span>&nbsp;</span>drawer you can select various options that will be passed along to the agent when it goes to perform the action.</p>
+<p><img src="https://www.simp-project.com/docs/simp-console/images/scan-schedule.png" loading="lazy" style="width: 383px; height: auto; max-width: 100%; margin-left: auto; margin-right: auto; display: block;" width="383" height="541"></p>
+<blockquote>
+<p><strong>Note:</strong><span>&nbsp;</span>The times specified are the system time of the machine running the Sicura Console. Agents are agnostic to the time of the console and will only pick up the scan when the console’s time has reached the time configured in the scan.</p>
+</blockquote>
+<h3 id="agent-connection-status">Agent Connection Status<a href="https://www.simp-project.com/docs/simp-console/sidebar-infrastructure.html#agent-connection-status" aria-label="Anchor" data-anchorjs-icon=""></a></h3>
+<p>The<span>&nbsp;</span><strong>Agent connection status</strong><span>&nbsp;</span>is a visualization for if the node has an actively running/connected Agent that is ready to accept scans.</p>
+<p>There are two states the Agent can be in:</p>
+<p><img src="https://www.simp-project.com/docs/simp-console/images/scanner-connected.png" loading="lazy" style="width: 174px; height: auto; max-width: 100%;" width="174" height="52"></p>
+<p><img src="https://www.simp-project.com/docs/simp-console/images/scanner-disconnected.png" loading="lazy" style="width: 185px; height: auto; max-width: 100%;" width="185" height="56"></p>
+<h3 id="scheduled-scan-viewer">Scheduled Scan Viewer<a href="https://www.simp-project.com/docs/simp-console/sidebar-infrastructure.html#scheduled-scan-viewer" aria-label="Anchor" data-anchorjs-icon=""></a></h3>
+<p>Clicking this viewer button will open the viewer pop-up screen allowing you to view<span>&nbsp;</span><em>previously</em>,<span>&nbsp;</span><em>running</em>, or<span>&nbsp;</span><em>future</em><span>&nbsp;</span>scheduled scans for a node.</p>
+<p><img src="https://www.simp-project.com/docs/simp-console/images/scan-viewer.png" loading="lazy" style="width: 258px; height: auto; max-width: 100%;" width="258" height="91"></p>
+<p>This shows a scan that failed to complete successfully, a scan that completed successfully, a scan currently running, a scheduled catalog check posted in the future, and a scheduled scan posted in the future.</p>
+<p><img src="https://www.simp-project.com/docs/simp-console/images/viewer-modal.png" loading="lazy" style="width: 530px; height: auto; max-width: 100%; margin-left: auto; margin-right: auto; display: block;" width="530" height="337"></p>
+<blockquote>
+<p><strong>Note:</strong><span>&nbsp;</span>Both catalog checks and compliance scans show up in the same list.</p>
+</blockquote>
+</div>
