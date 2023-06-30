@@ -1,0 +1,122 @@
+<h2 id="plugins">Plugins<a href="https://www.simp-project.com/docs/simp-console/config-plugins.html#plugins" aria-label="Anchor" data-anchorjs-icon=""></a></h2>
+<blockquote>
+<p><strong>Note:</strong><span>&nbsp;</span>All of the following YAML options can be set in&nbsp; &nbsp;<span style="font-family: monospace, monospace; font-size: 1em; background-color: transparent;"></span><code style="background-color: transparent;">/etc/sicura/sicura-console.yaml </code><span style="background-color: transparent;">Any other options are set from within the Console UI.</span></p>
+</blockquote>
+<p>The Sicura Console is built on a framework that lets developers easily implement new<span>&nbsp;</span><em>plugins</em><span>&nbsp;</span>for additional functionality. This also allows users to pick the parts of the Console they want to use and omit the pieces they don’t want.</p>
+<p>Sicura Console comes pre-loaded with multiple plugins. By default all plugins are loaded. If this is not the desired behavior, setting<span>&nbsp;</span><code>main.load_all_plugins = false</code><span>&nbsp;</span>in the<span>&nbsp;</span><code>sicura-console.yaml</code><span>&nbsp;</span>file will turn off this feature. You can then add the plugins you’d like to load to the<span>&nbsp;</span><code>plugins</code><span>&nbsp;</span>array. For example, if you wanted to just load the GitLab and Slack plugins, your<span>&nbsp;</span><code>sicura-console.yaml</code><span>&nbsp;</span>would include the following:</p>
+<div>
+<div>
+<pre style="padding-left: 40px;"><code><span>main.load_all_plugins</span><span>:</span> <span>false</span><br><span>plugins</span><span>:</span><br>  <span>-</span> <span>'</span><span>gitlab'</span><br>  <span>-</span> <span>'</span><span>slack'</span><br></code></pre>
+</div>
+</div>
+<p>The packaged plugins for the Sicura Console include:</p>
+<p><strong>Required</strong><span>&nbsp;</span>(these plugins are required for the console to run properly and are loaded by default):</p>
+<ul>
+<li><strong>Client Download Manager</strong><span>&nbsp;</span>- Includes Sicura Agent binaries and install/configuration instructions</li>
+<li><strong>Demo</strong><span>&nbsp;</span>- A mock plugin for testing purposes</li>
+<li><strong>Infrastructure</strong><span>&nbsp;</span>- Infrastructure management and monitoring</li>
+<li><strong>SCAP</strong><span>&nbsp;</span>- SCAP XCCDF Support</li>
+<li><strong>SCE</strong><span>&nbsp;</span>- Sicura Compliance Engine Plugin</li>
+<li><strong>Sicura Console</strong><span>&nbsp;</span>- Sicura Console wrapper</li>
+<li><strong>UI Framework</strong><span>&nbsp;</span>- Built-In Framework</li>
+</ul>
+<p><strong>Optional</strong><span>&nbsp;</span>(these plugins are generally broken down into notification and authentication providers):</p>
+<ul>
+<li><strong>google-auth</strong><span>&nbsp;</span>- Enables OAuth 2.0 login via the “Sign in with Google” button on the login page</li>
+<li><strong>gitlab</strong><span>&nbsp;</span>- Notification provider that submits issues to GitLab</li>
+<li><strong>email</strong><span>&nbsp;</span>- Notification provider that sends an email when triggered</li>
+<li><strong>LDAP</strong><span>&nbsp;</span>- Adds LDAP as an authentication provider to the “Authentication Providers” tab</li>
+<li><strong>slack</strong><span>&nbsp;</span>- Slack notification plugin for Jaeger</li>
+</ul>
+<p><strong>Notification Providers</strong><span>&nbsp;</span>- Will submit a notification specific to whatever platform is tied to this plugin whenever a relevant action is completed</p>
+<p><strong>Authentication Providers</strong><span>&nbsp;</span>- Allow for authentication into the Console</p>
+<h3 id="notification-providers">Notification Providers<a href="https://www.simp-project.com/docs/simp-console/config-plugins.html#notification-providers" aria-label="Anchor" data-anchorjs-icon=""></a></h3>
+<h4 id="usage">Usage<a href="https://www.simp-project.com/docs/simp-console/config-plugins.html#usage" aria-label="Anchor" data-anchorjs-icon=""></a></h4>
+<p>Once properly configured, the new notification provider will appear anywhere in the Console that supports notifications. For example inside the Report Generator drawer, “Notify on Completion” will contain all notification providers set up for the Console.</p>
+<h4 id="email">Email<a href="https://www.simp-project.com/docs/simp-console/config-plugins.html#email" aria-label="Anchor" data-anchorjs-icon=""></a></h4>
+<p>The email plugin is set-up from inside the Console UI. Navigate to<span>&nbsp;</span><code>Administration -&gt; Notifications</code>, then click<span>&nbsp;</span><code>Create a New Notification</code>. Inside the drawer, give the new provider a name and select<span>&nbsp;</span><code>email</code><span>&nbsp;</span>from the dropdown.</p>
+<blockquote>
+<p>NOTE:<span>&nbsp;</span><strong>If using Gmail configuration:</strong><br>As of May 30, 2022 Google removed the option for users to<span>&nbsp;</span><a href="https://support.google.com/accounts/answer/6010255">enable less secure apps</a>. To continue using Gmail, you must enable<span>&nbsp;</span><a href="https://support.google.com/accounts/answer/185839">2-Step Verification</a><span>&nbsp;</span>and use an<span>&nbsp;</span><a href="https://support.google.com/mail/answer/185833">application password</a>.</p>
+</blockquote>
+<p>Example configuration:</p>
+<div>
+<div>
+<pre style="padding-left: 40px;"><code><span>server</span><span>:</span> <span>smtp.gmail.com</span><br><span>port</span><span>:</span> <span>587</span><br><span>username</span><span>:</span> <span>the email you want to use to send emails</span><br><span>password</span><span>:</span> <span>password for that email</span><br><span>interface</span><span>:</span> <span>smtp for smtp server</span><br><span>encryption_method</span><span>:</span> <span>TLS/STARTTLS</span><br><span>authentication_method</span><span>:</span> <span>plain</span><br><span>recipient</span><span>:</span> <span>email of the person receiving email</span><br><span>cc</span><span>:</span> <span>(optional) additional recipient email</span><br><span>bcc</span><span>:</span> <span>(optional) additional recipient email</span><br></code></pre>
+</div>
+</div>
+<h4 id="gitlab">GitLab<a href="https://www.simp-project.com/docs/simp-console/config-plugins.html#gitlab" aria-label="Anchor" data-anchorjs-icon=""></a></h4>
+<p>The GitLab plugin is set-up from within the Console UI. Navigate to<span>&nbsp;</span><code>Administration -&gt; Notifications</code>, then click<span>&nbsp;</span><code>Create a New Notification</code>. Inside the drawer, give the new provider a name and select<span>&nbsp;</span><code>gitlab</code><span>&nbsp;</span>from the dropdown.</p>
+<p>Required parameters:</p>
+<div>
+<div>
+<pre><code><span>GitLab URL</span><span>:</span> <span>API URL for your GitLab instance (i.e. https://gitlab.example.com/api/v4)</span><br><span>Access Token</span><span>:</span> <span>Token of a user with rights to create issues</span><br><span>Project ID</span><span>:</span> <span>can be found on the project you wish to generate the issue for</span><br><span>Project labels</span><span>:</span> <span>labels that should be assigned to the issue</span><br><span>Assignee ID</span><span>:</span> <span>user ID to assign the issue to</span><br><span>Milestone ID</span><span>:</span> <span>ID of the milestone to be assigned to issue</span><br></code></pre>
+</div>
+</div>
+<h4 id="slack">Slack<a href="https://www.simp-project.com/docs/simp-console/config-plugins.html#slack" aria-label="Anchor" data-anchorjs-icon=""></a></h4>
+<p>The Slack plugin is set-up from inside the Console UI. Navigate to<span>&nbsp;</span><code>Administration -&gt; Notifications</code><span>&nbsp;</span>and click<span>&nbsp;</span><code>Create a New Notification</code>. Inside the drawer, give the new provider a name and select<span>&nbsp;</span><code>slack</code><span>&nbsp;</span>from the dropdown.</p>
+<p>Example configuration:</p>
+<div>
+<div>
+<pre><code><span>oauth_token</span><span>:</span> <span>(token provided by the bot configuration)</span><br><span>channel</span><span>:</span> <span>#sicura-notifications (or some other channel)</span><br></code></pre>
+</div>
+</div>
+<h3 id="authentication-providers">Authentication Providers<a href="https://www.simp-project.com/docs/simp-console/config-plugins.html#authentication-providers" aria-label="Anchor" data-anchorjs-icon=""></a></h3>
+<blockquote>
+<p><strong>Notice:</strong><span>&nbsp;</span>Although it is possible to add directory services to Sicura Console using the yaml configuration, it is highly recommended to implement them using the user interface.</p>
+</blockquote>
+<p>The LDAP plugin is installed in Sicura Console by default.</p>
+<h4 id="using-the-user-interface">Using the User Interface<a href="https://www.simp-project.com/docs/simp-console/config-plugins.html#using-the-user-interface" aria-label="Anchor" data-anchorjs-icon=""></a></h4>
+<p>A directory service can be added by clicking<span>&nbsp;</span><strong><em>Create New Entry</em></strong><span>&nbsp;</span>in the<span>&nbsp;</span><em>Directory Services</em><span>&nbsp;</span>page under the<span>&nbsp;</span><em>Administration</em><span>&nbsp;</span>tab.</p>
+<h3 id="using-sicura-consoleyaml">Using<span>&nbsp;</span><code>sicura-console.yaml</code><a href="https://www.simp-project.com/docs/simp-console/config-plugins.html#using-sicura-consoleyaml" aria-label="Anchor" data-anchorjs-icon=""></a></h3>
+<p>To configure a directory service in the<span>&nbsp;</span><code>sicura-console.yaml</code>, add<span>&nbsp;</span><code>main.directory_services</code>.<br>Each directory service is added as an element to<span>&nbsp;</span><code>main.directory_services</code><span>&nbsp;</span>and take the following parameters:</p>
+<p><code>name</code><span>&nbsp;</span>- The canonical name of the service, this is the name that is shown when listed as a domain on the Sicura Console login page<br>Example:<span>&nbsp;</span><code>name: "Vagrant LDAP Test Server"</code></p>
+<p><code>auth_provider</code><span>&nbsp;</span>- The authentication provider to use<br>Example:<span>&nbsp;</span><code>auth_provider: "ldap"</code></p>
+<p><code>create_user</code><span>&nbsp;</span>- Specifies whether or not to automatically create a new Sicura Console user on successful login with an unlinked account<br>Example:<span>&nbsp;</span><code>create_user: true</code></p>
+<p><code>settings</code><span>&nbsp;</span>- A hash of additional plugin specific options</p>
+<h3 id="ldap">LDAP<a href="https://www.simp-project.com/docs/simp-console/config-plugins.html#ldap" aria-label="Anchor" data-anchorjs-icon=""></a></h3>
+<h4 id="using-the-ldap-user-interface">Using the LDAP User Interface<a href="https://www.simp-project.com/docs/simp-console/config-plugins.html#using-the-ldap-user-interface" aria-label="Anchor" data-anchorjs-icon=""></a></h4>
+<p>To add a new entry, click<span>&nbsp;</span><strong>Create New Entry</strong>, select<span>&nbsp;</span><strong>ldap</strong><span>&nbsp;</span>as the Service Provider, and fill in the relevant details.</p>
+<h4 id="using-sicura-consoleyaml-1">Using sicura-console.yaml<a href="https://www.simp-project.com/docs/simp-console/config-plugins.html#using-sicura-consoleyaml-1" aria-label="Anchor" data-anchorjs-icon=""></a></h4>
+<p>An example of two valid LDAP configurations:</p>
+<div>
+<div>
+<pre><code><span>main.directory_services</span><span>:</span><br>  <span>-</span> <span>name</span><span>:</span> <span>"</span><span>Vagrant</span><span> </span><span>LDAP</span><span> </span><span>Test</span><span> </span><span>Server"</span><br>    <span>auth_provider</span><span>:</span> <span>'</span><span>ldap'</span><br>    <span>create_user</span><span>:</span> <span>true</span><br>    <span>settings</span><span>:</span><br>      <span>search_base</span><span>:</span> <span>"</span><span>ou=People,dc=jaeger,dc=local"</span><br>      <span>search_filter</span><span>:</span> <span>'</span><span>'</span><br>      <span>login_attribute</span><span>:</span> <span>'</span><span>uid'</span><br>      <span>host</span><span>:</span> <span>"</span><span>127.0.0.1"</span><br>      <span>port</span><span>:</span> <span>9080</span><br>      <span>binddn</span><span>:</span> <span>'</span><span>'</span><br>      <span>binddn_password</span><span>:</span> <span>'</span><span>'</span><br>  <span>-</span> <span>name</span><span>:</span> <span>"</span><span>Staging</span><span> </span><span>LDAP</span><span> </span><span>Test</span><span> </span><span>Server"</span><br>    <span>auth_provider</span><span>:</span> <span>'</span><span>ldap'</span><br>    <span>create_user</span><span>:</span> <span>true</span><br>    <span>settings</span><span>:</span><br>      <span>search_base</span><span>:</span> <span>"</span><span>ou=People,dc=staging,dc=local"</span><br>      <span>search_filter</span><span>:</span> <span>'</span><span>(&amp;(objectClass=person)(objectClass=user))'</span><br>      <span>login_attribute</span><span>:</span> <span>"</span><span>uid"</span><br>      <span>host</span><span>:</span> <span>"</span><span>192.168.0.27"</span><br>      <span>port</span><span>:</span> <span>9080</span><br>      <span>binddn</span><span>:</span> <span>"</span><span>cn=admin,dc=staging,dc=local"</span><br>      <span>binddn_password</span><span>:</span> <span>'</span><span>Pas$word1'</span><br></code></pre>
+</div>
+</div>
+<p>The following are specific settings related to LDAP authentication, and are located in the<span>&nbsp;</span><code>settings</code><span>&nbsp;</span>hash of the file.<br><code>search_base</code>- The organization unit and domain component string</p>
+<p><code>search_filter</code><span>&nbsp;</span>- The filter to narrow down results</p>
+<ul>
+<li>If a filter isn’t specified or set to null, then the default<span>&nbsp;</span><code>(&amp;(objectClass=person)(objectClass=user))</code><span>&nbsp;</span>will be used</li>
+<li>To not use a filter, set the field to an empty string</li>
+</ul>
+<p><code>login_attribute</code><span>&nbsp;</span>- The attribute by which user accounts will be looked up in the LDAP server</p>
+<p><code>host</code><span>&nbsp;</span>- The IP or domain of the target LDAP server</p>
+<p><code>port</code><span>&nbsp;</span>- The port to connect to the target LDAP server</p>
+<p><code>binddn</code><span>&nbsp;</span>- The full path to the object you are authenticating against</p>
+<p><code>binddn_password</code><span>&nbsp;</span>- The password for authentication</p>
+<blockquote>
+<p><strong>Note:</strong><span>&nbsp;</span>Every LDAP setting except for<span>&nbsp;</span><code>search_filter</code><span>&nbsp;</span>must be configured. Use an empty string if a setting is not in use.</p>
+</blockquote>
+<h3>Active Directory</h3>
+<h4>Using the Active Directory User Interface</h4>
+<p>To add a new entry, click<span>&nbsp;</span><strong>Create New Entry</strong>, select<span>&nbsp;</span><strong>active directory</strong><span>&nbsp;</span>as the Service Provider, and fill in the relevant details. The required connection details are the same as an LDAP provider, the primary difference being the<span>&nbsp;</span><code>login attribute</code><span>&nbsp;</span>is<span>&nbsp;</span><code>samaccountName</code><span>&nbsp;</span>instead of<span>&nbsp;</span><code>uid</code>.</p>
+<h4 id="using-sicura-consoleyaml-2">Using sicura-console.yaml<a href="https://www.simp-project.com/docs/simp-console/config-plugins.html#using-sicura-consoleyaml-2" aria-label="Anchor" data-anchorjs-icon=""></a></h4>
+<div>
+<div>
+<pre><code>main.directory_services:<br>  - name: "Company Active Directory"<br>    auth_provider: 'ldap'<br>    create_user: true<br>    settings:<br>      search_base: "ou=People,dc=staging,dc=local"<br>      search_filter: '(&amp;(objectClass=person)(objectClass=user))'<br>      login_attribute: "samaccountName"<br>      host: "192.168.0.27"<br>      port: 636<br>      binddn: "cn=admin,dc=staging,dc=local"<br>      binddn_password: 'Pas$word1'<br></code></pre>
+</div>
+</div>
+<h3 id="google-oauth">Google OAuth<a href="https://www.simp-project.com/docs/simp-console/config-plugins.html#google-oauth" aria-label="Anchor" data-anchorjs-icon=""></a></h3>
+<h4 id="using-the-ldap-user-interface-1">Using the LDAP User Interface<a href="https://www.simp-project.com/docs/simp-console/config-plugins.html#using-the-ldap-user-interface-1" aria-label="Anchor" data-anchorjs-icon=""></a></h4>
+<p>To add a new entry, click<span>&nbsp;</span><strong>Create New Entry</strong>, select<span>&nbsp;</span><strong>google auth</strong><span>&nbsp;</span>as the Service Provider, and fill in the relevant details.</p>
+<h4 id="using-sicura-consoleyaml-3">Using sicura-console.yaml<a href="https://www.simp-project.com/docs/simp-console/config-plugins.html#using-sicura-consoleyaml-3" aria-label="Anchor" data-anchorjs-icon=""></a></h4>
+<p>The following parameters must be set in order for Google OAuth to correctly operate.</p>
+<p style="padding-left: 40px;"><strong>client_id</strong><br><strong>client_secret</strong><br><strong>domain</strong></p>
+<p>These are provided by Google when registering an API to use for Google OAuth.</p>
+<p>When<span>&nbsp;</span><strong>create_new_user</strong><span>&nbsp;</span>is set to<span>&nbsp;</span><code>true</code>, Sicura Console will generate a new Console User if a user uses a Google login not already linked to a Sicura Console account</p>
+<p>An example of what the configuration may look like:</p>
+<div>
+<div>
+<pre style="padding-left: 40px;"><code><span>main.directory_services</span><span>:</span><br>  <span>-</span> <span>name</span><span>:</span> <span>"</span><span>Google</span><span> </span><span>OAuth</span><span> </span><span>Login</span><span> </span><span>Config"</span><br>    <span>auth_provider</span><span>:</span> <span>'</span><span>google</span><span> </span><span>auth'</span><br>    <span>create_user</span><span>:</span> <span>true</span><br>    <span>settings</span><span>:</span><br>      <span>client_id</span><span>:</span> <span>&lt;clientid&gt;.apps.googleusercontent.com</span><br>      <span>client_secret</span><span>:</span> <span>&lt;client secret&gt;</span><br>      <span>domain</span><span>:</span> <span>example.com</span></code></pre>
+</div>
+</div>
